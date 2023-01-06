@@ -17,14 +17,16 @@ const (
 )
 
 func SetDefaults() error {
-	if err := setNodeDefaults(); err != nil {
-		// remember to delete these logs when bug found
-		logger.Log(0, "parse bug was found at setNodeDefaults")
-		return err
-	}
 
 	if err := setNetworkDefaults(); err != nil {
 		logger.Log(0, "parse bug was found at setNetworkDefaults")
+		return err
+	}
+
+	if err := setNodeDefaults(); err != nil {
+		// remember to delete these logs when bug found
+		// parse bug was found here
+		logger.Log(0, "parse bug was found at setNodeDefaults")
 		return err
 	}
 
