@@ -237,6 +237,8 @@ func SetNodeDefaults(node *models.Node) {
 		node.NetworkRange6 = *cidr
 	}
 	node.ExpirationDateTime = time.Now().Add(models.TEN_YEARS_IN_SECONDS)
+	// remove when done
+	logger.Log(0, "time parsed ok1")
 
 	if node.DefaultACL == "" {
 		node.DefaultACL = parentNetwork.DefaultACL
@@ -244,6 +246,7 @@ func SetNodeDefaults(node *models.Node) {
 
 	if node.PersistentKeepalive == 0 {
 		node.PersistentKeepalive = time.Second * time.Duration(parentNetwork.DefaultKeepalive)
+		logger.Log(0, "time parsed ok2")
 	}
 	if node.PostUp == "" {
 		postup := parentNetwork.DefaultPostUp
