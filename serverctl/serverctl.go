@@ -41,6 +41,7 @@ func setNodeDefaults() error {
 	logger.Log(0, "here is good")
 	nodes, err := logic.GetAllNodes()
 	if err != nil {
+		logger.Log(0, "error is here")
 		return err
 	}
 	for i := range nodes {
