@@ -17,12 +17,6 @@ const (
 )
 
 func SetDefaults() error {
-
-	if err := setNetworkDefaults(); err != nil {
-		logger.Log(0, "parse bug was found at setNetworkDefaults")
-		return err
-	}
-
 	if err := setNodeDefaults(); err != nil {
 		// remember to delete these logs when bug found
 		// parse bug was found here
@@ -30,8 +24,11 @@ func SetDefaults() error {
 		return err
 	}
 
+	if err := setNetworkDefaults(); err != nil {
+		return err
+	}
+
 	if err := setUserDefaults(); err != nil {
-		logger.Log(0, "parse bug was found at setUserDefaults")
 		return err
 	}
 
@@ -41,6 +38,7 @@ func SetDefaults() error {
 // setNodeDefaults - runs through each node and set defaults
 func setNodeDefaults() error {
 	// upgraded systems will not have ACL's set, which is why we need this function
+	logger.Log(0, "here is good")
 	nodes, err := logic.GetAllNodes()
 	if err != nil {
 		return err
